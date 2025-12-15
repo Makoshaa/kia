@@ -18,8 +18,16 @@ async function setupProduction() {
 
     // Run migrations
     console.log('📦 Применяем миграции...')
-    await migrate(db, { migrationsFolder: './drizzle' })
-    console.log('✅ Миграции применены успешно!')
+    try {
+      await migrate(db, { migrationsFolder: './drizzle' })
+      console.log('✅ Миграции применены успешно!')
+    } catch (error: any) {
+      if (error?.cause?.code === '42P07') {
+        console.log('ℹ️  Таблицы уже существуют, пропускаем миграции')
+      } else {
+        throw error
+      }
+    }
 
     // Check if kia user exists
     console.log('👤 Проверяем существование пользователя kia...')
