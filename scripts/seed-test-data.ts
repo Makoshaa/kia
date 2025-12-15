@@ -60,6 +60,17 @@ function getRandomDate(daysAgo: number): Date {
   return date
 }
 
+function getRandomQuality(): number {
+  // Взвешенное распределение качества клиента
+  // 10% - качество 1, 15% - 2, 25% - 3, 30% - 4, 20% - 5
+  const rand = Math.random() * 100
+  if (rand < 10) return 1
+  if (rand < 25) return 2
+  if (rand < 50) return 3
+  if (rand < 80) return 4
+  return 5
+}
+
 async function seedTestData() {
   const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
@@ -84,7 +95,7 @@ async function seedTestData() {
         city: getRandomElement(cities),
         selectedCar: car,
         purchaseMethod: getRandomElement(purchaseMethods),
-        clientQuality: Math.floor(Math.random() * 5) + 1, // 1-5
+        clientQuality: getRandomQuality(),
         trafficSource: getRandomElement(trafficSources),
         summaryDialog: getRandomElement(dialogTemplates)(firstName, car),
         createdAt: getRandomDate(90), // последние 90 дней
