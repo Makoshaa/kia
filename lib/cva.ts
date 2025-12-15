@@ -1,4 +1,9 @@
-export type VariantProps<T extends (...args: any) => any> = Parameters<T>[0]
+// Simplified VariantProps to avoid leaking a generic Record type into component props
+export type VariantProps<T extends (...args: any) => any> = {
+  variant?: string
+  size?: string
+  className?: string
+}
 
 export function cva(
   base: string,
