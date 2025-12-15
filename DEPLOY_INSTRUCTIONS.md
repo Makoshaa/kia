@@ -53,8 +53,8 @@ npm install && npm run setup:production && npm run build
 
 Откройте ваше приложение по адресу `https://kia-fgcs.onrender.com` и попробуйте войти:
 
-- **Логин:** kia
-- **Пароль:** kia123
+- **Логин:** admin
+- **Пароль:** admin123
 
 ## Troubleshooting
 
