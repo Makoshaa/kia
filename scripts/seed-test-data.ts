@@ -61,14 +61,8 @@ function getRandomDate(daysAgo: number): Date {
 }
 
 function getRandomQuality(): number {
-  // Взвешенное распределение качества клиента
-  // 10% - качество 1, 15% - 2, 25% - 3, 30% - 4, 20% - 5
-  const rand = Math.random() * 100
-  if (rand < 10) return 1
-  if (rand < 25) return 2
-  if (rand < 50) return 3
-  if (rand < 80) return 4
-  return 5
+  // Случайное значение от 0 до 100
+  return Math.floor(Math.random() * 101)
 }
 
 async function seedTestData() {
