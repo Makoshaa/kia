@@ -29,26 +29,26 @@ async function setupProduction() {
       }
     }
 
-    // Check if kia user exists
-    console.log('👤 Проверяем существование пользователя kia...')
-    const existingUser = await db.select().from(users).where(eq(users.username, 'kia')).limit(1)
+    // Check if admin user exists
+    console.log('👤 Проверяем существование пользователя admin...')
+    const existingUser = await db.select().from(users).where(eq(users.username, 'admin')).limit(1)
 
     if (existingUser.length > 0) {
-      console.log('ℹ️  Пользователь "kia" уже существует')
+      console.log('ℹ️  Пользователь "admin" уже существует')
     } else {
-      // Create kia user
-      console.log('👤 Создаем пользователя kia...')
-      const hashedPassword = await bcrypt.hash('kia123', 10)
+      // Create admin user
+      console.log('👤 Создаем пользователя admin...')
+      const hashedPassword = await bcrypt.hash('admin123', 10)
 
       await db.insert(users).values({
-        username: 'kia',
+        username: 'admin',
         password: hashedPassword,
-        name: 'Kia Qazaqstan',
+        name: 'Administrator',
       })
 
-      console.log('✅ Пользователь kia создан!')
-      console.log('   Логин: kia')
-      console.log('   Пароль: kia123')
+      console.log('✅ Пользователь admin создан!')
+      console.log('   Логин: admin')
+      console.log('   Пароль: admin123')
     }
 
     console.log('\n✅ Production БД настроена успешно!')

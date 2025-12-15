@@ -1,6 +1,13 @@
 import { db } from '../lib/db'
 import { leads } from '../lib/db/schema'
 
+// Функция для создания даты N дней назад
+const daysAgo = (days: number) => {
+  const date = new Date()
+  date.setDate(date.getDate() - days)
+  return date
+}
+
 const testLeads = [
   {
     name: 'Асхат Нұрлан',
@@ -9,7 +16,8 @@ const testLeads = [
     purchaseMethod: 'кредит',
     clientQuality: 85,
     trafficSource: 'Instagram',
-    summaryDialog: 'Клиент заинтересован в покупке Kia Sportage. Хочет оформить в кредит на 5 лет. Готов приехать на тест-драйв в ближайшие дни. Интересуется комплектацией Luxe.'
+    summaryDialog: 'Клиент заинтересован в покупке Kia Sportage. Хочет оформить в кредит на 5 лет. Готов приехать на тест-драйв в ближайшие дни. Интересуется комплектацией Luxe.',
+    createdAt: daysAgo(1)
   },
   {
     name: 'Айгуль Сапарова',
@@ -18,7 +26,8 @@ const testLeads = [
     purchaseMethod: 'наличные',
     clientQuality: 92,
     trafficSource: 'WhatsApp',
-    summaryDialog: 'Клиентка готова купить Kia Seltos за наличные. Интересует комплектация в максимальной комплектации. Хочет посмотреть автомобиль в белом цвете.'
+    summaryDialog: 'Клиентка готова купить Kia Seltos за наличные. Интересует комплектация в максимальной комплектации. Хочет посмотреть автомобиль в белом цвете.',
+    createdAt: daysAgo(2)
   },
   {
     name: 'Ерлан Абдуллаев',
@@ -27,7 +36,8 @@ const testLeads = [
     purchaseMethod: 'trade-in',
     clientQuality: 65,
     trafficSource: '2GIS',
-    summaryDialog: 'Клиент хочет обменять старый автомобиль Toyota Camry 2015 года на Kia K5. Нужна оценка trade-in и расчет доплаты.'
+    summaryDialog: 'Клиент хочет обменять старый автомобиль Toyota Camry 2015 года на Kia K5. Нужна оценка trade-in и расчет доплаты.',
+    createdAt: daysAgo(3)
   },
   {
     name: 'Дина Жаксылыкова',
@@ -36,7 +46,8 @@ const testLeads = [
     purchaseMethod: 'кредит',
     clientQuality: 78,
     trafficSource: 'Instagram',
-    summaryDialog: 'Семья интересуется покупкой 7-местного внедорожника. Рассматривают Kia Sorento. Нужна консультация по кредитным программам с минимальным первоначальным взносом.'
+    summaryDialog: 'Семья интересуется покупкой 7-местного внедорожника. Рассматривают Kia Sorento. Нужна консультация по кредитным программам с минимальным первоначальным взносом.',
+    createdAt: daysAgo(5)
   },
   {
     name: 'Бекзат Оразов',
@@ -45,7 +56,8 @@ const testLeads = [
     purchaseMethod: 'наличные',
     clientQuality: 95,
     trafficSource: 'WhatsApp',
-    summaryDialog: 'Клиент срочно ищет минивэн для большой семьи. Готов купить Kia Carnival в ближайшее время за наличные. Интересует наличие на складе и сроки оформления.'
+    summaryDialog: 'Клиент срочно ищет минивэн для большой семьи. Готов купить Kia Carnival в ближайшее время за наличные. Интересует наличие на складе и сроки оформления.',
+    createdAt: daysAgo(7)
   },
   {
     name: 'Гульнара Садыкова',
@@ -54,7 +66,8 @@ const testLeads = [
     purchaseMethod: 'кредит',
     clientQuality: 45,
     trafficSource: '2GIS',
-    summaryDialog: 'Клиентка интересуется бюджетным автомобилем для города. Рассматривает Kia Rio, но пока не уверена. Нужно время на раздумья.'
+    summaryDialog: 'Клиентка интересуется бюджетным автомобилем для города. Рассматривает Kia Rio, но пока не уверена. Нужно время на раздумья.',
+    createdAt: daysAgo(10)
   },
   {
     name: 'Мурат Темиров',
@@ -63,7 +76,8 @@ const testLeads = [
     purchaseMethod: 'наличные',
     clientQuality: 88,
     trafficSource: 'Instagram',
-    summaryDialog: 'Клиент ищет спортивный седан с мощным двигателем. Заинтересован в Kia Stinger GT. Хочет записаться на тест-драйв на этой неделе.'
+    summaryDialog: 'Клиент ищет спортивный седан с мощным двигателем. Заинтересован в Kia Stinger GT. Хочет записаться на тест-драйв на этой неделе.',
+    createdAt: daysAgo(14)
   },
   {
     name: 'Сауле Нурбекова',
@@ -72,7 +86,8 @@ const testLeads = [
     purchaseMethod: 'trade-in',
     clientQuality: 70,
     trafficSource: 'WhatsApp',
-    summaryDialog: 'Клиентка хочет обменять Hyundai Tucson 2017 на новый Kia Sportage. Интересуют условия trade-in и возможные скидки.'
+    summaryDialog: 'Клиентка хочет обменять Hyundai Tucson 2017 на новый Kia Sportage. Интересуют условия trade-in и возможные скидки.',
+    createdAt: daysAgo(18)
   },
   {
     name: 'Ернар Кенжебеков',
@@ -81,7 +96,8 @@ const testLeads = [
     purchaseMethod: 'кредит',
     clientQuality: 82,
     trafficSource: '2GIS',
-    summaryDialog: 'Клиент интересуется флагманским внедорожником Kia Telluride. Нужна консультация по кредитным программам и наличию в комплектации Prestige.'
+    summaryDialog: 'Клиент интересуется флагманским внедорожником Kia Telluride. Нужна консультация по кредитным программам и наличию в комплектации Prestige.',
+    createdAt: daysAgo(21)
   },
   {
     name: 'Алия Бектурова',
@@ -90,7 +106,8 @@ const testLeads = [
     purchaseMethod: 'наличные',
     clientQuality: 90,
     trafficSource: 'Instagram',
-    summaryDialog: 'Клиентка заинтересована в электромобиле Kia EV6. Готова к покупке. Интересуют технические характеристики, запас хода и инфраструктура зарядных станций в городе.'
+    summaryDialog: 'Клиентка заинтересована в электромобиле Kia EV6. Готова к покупке. Интересуют технические характеристики, запас хода и инфраструктура зарядных станций в городе.',
+    createdAt: daysAgo(25)
   }
 ]
 
